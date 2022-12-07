@@ -1,4 +1,4 @@
-// import "./App.css";
+import "./App.css";
 // import Headlines from "./Components/Headlines";
 // import Loader from "./Components/Loader";
 import NavBar from "./Components/Navbar";
@@ -19,58 +19,21 @@ import NavBar from "./Components/Navbar";
 // 	"automobile",
 // ];
 
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewsContainer from "./Components/NewsContainer";
 
 const url = `https://api.newscatcherapi.com/v2/search?q=science`;
 
-// export default class App extends Component {
-// 	constructor() {
-// 		super();
-// 		this.state = {
-// 			articles: [],
-// 			loading: true,
-// 			category: "science",
-// 		};
-// 	}
-// 	componentDidMount() {
-// 		function call() {
-// 			fetch(`${url}`, {
-// 				headers: {
-// 					"x-api-key": "FX7d_IkIjEfnqUo-qHQK6VrTj82cVS5BGFCAf3CK8M0",
-// 				},
-// 			})
-// 				.then((res) => res.json())
-// 				.then((data) => {
-// 					console.log(data);
-// 					data.status === "ok"
-// 						? this.setState({ loading: false, articles: data.articles })
-// 						: this.setState({ loading: true });
-// 					console.log(articles);
-// 					console.log("print all");
-// 				});
-// 		}
-// 		call();
-// 	}
-// 	render() {
-// 		return (
-// 			<div>
-// 				<NavBar />
-// 				<NewsContainer articles={this.state.articles} />
-// 			</div>
-// 		);
-// 	}
-// }
-
 export default function App() {
+	const Base_Url = "https://saurav.tech/NewsAPI/";
+	const [Category, setCategory] = useState("general");
 	const [Articles, setArticles] = useState([]);
+	const [url, setUrl] = useState(
+		`${Base_Url}top-headlines/category/${Category}/in.json`
+	);
 	useEffect(() => {
 		function call() {
-			fetch(`${url}`, {
-				headers: {
-					"x-api-key": "FX7d_IkIjEfnqUo-qHQK6VrTj82cVS5BGFCAf3CK8M0",
-				},
-			})
+			fetch(url)
 				.then((res) => res.json())
 				.then((data) => {
 					setArticles(data.articles);
@@ -81,11 +44,23 @@ export default function App() {
 				});
 		}
 		call();
-	}, []);
+	}, [url]);
+	const changeCategory = (event) => {
+		setCategory(`${event.currentTarget.id}`);
+		setUrl(
+			`${Base_Url}top-headlines/category/${event.currentTarget.id}/in.json`
+		);
+		// event.currentTarget.classList.add("demo");
+	};
+	const changeType = (event) => {
+		setUrl(`${Base_Url}everything/${event.currentTarget.id}.json`);
+		// event.currentTarget.classList.add("demo");
+	};
 	return (
-		<div>
-			<NavBar />
+		<>
+			<NavBar changeCategory={changeCategory} changeType={changeType} />
+
 			<NewsContainer articles={Articles} />
-		</div>
+		</>
 	);
 }

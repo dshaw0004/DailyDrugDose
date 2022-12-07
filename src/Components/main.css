@@ -1,3 +1,160 @@
-.card-img-top {
-	width: 90%;
+/***** Start Navbar component *****/
+nav {
+	width: 100%;
 }
+.ddd-logo {
+	height: 50px;
+	width: 50px;
+}
+
+/***** Start Filter component *****/
+.filter {
+	width: 100%;
+}
+.filter .filter-btn {
+	cursor: pointer;
+	display: none;
+}
+.filter .filter-modal {
+	position: static;
+	display: grid;
+	grid-template-columns: auto auto;
+	z-index: 2;
+	/* -webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px); */
+	width: 100%;
+
+	/* margin: 0 auto; */
+	padding: 0.75ch 0;
+}
+.filter .filter-modal .filter-modal-close {
+	display: none;
+}
+/* .filter .filter-modal h5 {
+	margin-left: 1rem;
+} */
+.category-selector,
+.channel-selector {
+	list-style: none;
+	overflow-x: scroll;
+	gap: 1ch 5ch;
+	display: flex;
+	padding-left: 0;
+}
+.channel-selector::-webkit-scrollbar,
+.category-selector::-webkit-scrollbar {
+	width: 0%;
+	/* background-color: aqua; */
+	height: 0px;
+}
+.filter .filter-modal .filter-modal-close,
+:is(.category-selector, .channel-selector) > li {
+	cursor: pointer;
+}
+/***** End Filter component *****/
+
+/***** End Navbar component *****/
+
+/***** Start NewContainer component *****/
+
+.news-container {
+	margin: 0 1ch;
+	display: grid;
+
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 5px;
+	/* padding-inline: 0.5ch; */
+}
+
+/***** End NewContainer component *****/
+
+/***** Start Headlines component *****/
+
+.card {
+	margin: 0 auto;
+	border: 0;
+	position: relative;
+	max-width: 350px;
+	max-height: 350px;
+	aspect-ratio: 1/1;
+	outline: 1px double #123456;
+}
+.card > .readMore-btn {
+	position: absolute;
+	right: 1ch;
+	top: 1ch;
+	max-width: -webkit-fit-content;
+	max-width: -moz-fit-content;
+	max-width: fit-content;
+	display: none;
+}
+.card > .readMore-btn > a {
+	color: aliceblue;
+}
+.card > .img-container {
+	background-color: #dfdfdf;
+	width: 100%;
+	height: 50%;
+}
+
+.card-img-top {
+	border-radius: 4px;
+	margin: auto;
+	display: block;
+
+	max-width: 95%;
+	max-height: 100%;
+}
+
+.card:hover .readMore-btn {
+	display: block;
+}
+
+/***** End Headlines component *****/
+
+/***** Start Media-query *****/
+
+@media screen and (max-width: 500px) {
+	.filter .filter-btn {
+		display: inline;
+	}
+	.filter .filter-modal {
+		position: absolute;
+		left: 0%;
+		right: 0;
+
+		background-color: #fedcba;
+		/* z-index: 2; */
+		/* -webkit-backdrop-filter: blur(5px);
+		backdrop-filter: blur(5px); */
+		width: 90%;
+		border-radius: 4px;
+		outline: 1px double;
+		margin: 0 auto;
+		padding: 0.75ch 0;
+	}
+	.filter .filter-modal .filter-modal-close {
+		position: absolute;
+		top: 4px;
+		right: 4px;
+		cursor: pointer;
+	}
+	.category-selector,
+	.channel-selector {
+		list-style: none;
+		/* display: flex; */
+		/* overflow: scroll; */
+		gap: 1ch 5ch;
+
+		display: grid;
+		grid-template-columns: auto auto;
+	}
+}
+/* @media screen and (min-width: 800px) {
+	.news-container {
+		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+		gap: 0.5ch;
+	}
+} */
+
+/***** End Media-query *****/

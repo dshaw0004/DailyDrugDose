@@ -1,37 +1,20 @@
 import React from "react";
 import HeadLines from "./HeadLines";
-// import Link from "react-router-dom";
+import './main.css'
 
-// const category = [
-// 	"all",
-// 	"national",
-// 	"business",
-// 	"sports",
-// 	"world",
-// 	"politics",
-// 	"technology",
-// 	"startup",
-// 	"entertainment",
-// 	"miscellaneous",
-// 	"hatke",
-// 	"science",
-// 	"automobile",
-// ];
 function NewsContainer(props) {
-	// handleChange(e) {
-	// 	this.setState({ category: e.target.value });
-	// }
-
+	// console.log(props.articles);
 	return (
-		<main>
+		<main className="news-container">
 			{props.articles.map((el) => {
+				// console.log(el);
 				return (
 					<HeadLines
-						key={el._id}
+						key={el.url}
 						title={el.title}
-						des={el.summary}
-						imageUrl={el.media}
-						readMoreUrl={el.link}
+						des={el.description}
+						imageUrl={el.urlToImage}
+						readMoreUrl={el.url}
 					/>
 				);
 			})}
